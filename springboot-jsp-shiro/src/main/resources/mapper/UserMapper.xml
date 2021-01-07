@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+ namespace：必须有值，自定义的唯一字符串
+ 推荐使用：dao 接口的全限定名称
+-->
+<mapper namespace="cn.gyu.springbootjspshiro.dao.UserDao">
+    <insert id="save" parameterType="cn.gyu.springbootjspshiro.entity.User" useGeneratedKeys="true" keyProperty="id">
+        <!--要执行的 sql 语句-->
+        insert into user values(#{id}, #{username}, #{password}, #{salt})
+    </insert>
+
+    <select id="findByName" parameterType="string" resultType="cn.gyu.springbootjspshiro.entity.User">
+        select id,username,password,salt
+        from user where username=#{username}
+    </select>
+</mapper>
